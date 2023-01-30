@@ -1,0 +1,4 @@
+.vs/*
+CMakeBuilds/*
+SegmentationPython/boardroom.*
+src/cmakedefines.h

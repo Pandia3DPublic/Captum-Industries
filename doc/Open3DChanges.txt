@@ -1,0 +1,58 @@
+1. Philip 11.7 
+Changed in ImageFactory.cpp  in Function:
+std::shared_ptr<Image> Image::CreateImageFromFloatImage() const 
+Added support for 3 channels
+
+
+19.8
+Added a indeces matrix to the pointcloud class. Changed the CreateFromRGBDImage to fill it. Indeces contains the index of the points vector given two images coordinates.
+
+philip:
+Added void Integrate(const geometry::PointCloud &pcd); 
+into scalabletsdfvolume to ingerate pcds. not working right now.
+
+
+Added 	//custom code so no rgbdimage is needed
+	void IntegrateWithDepthToCameraDistanceMultiplier(
+            const geometry::Image &colorimg,
+                   const geometry::Image &depthimg,
+            const camera::PinholeCameraIntrinsic &intrinsic,
+            const Eigen::Matrix4d &extrinsic,
+            const geometry::Image &depth_to_camera_distance_multiplier);
+	// Integrate while Counting number of labels
+        std::pair<int, int> IntegrateWithLabelCount(
+                const geometry::Image &colorimg,
+                const geometry::Image &depthimg,
+                const camera::PinholeCameraIntrinsic &intrinsic,
+                const Eigen::Matrix4d &extrinsic,
+                const geometry::Image &depth_to_camera_distance_multiplier) ;
+        // Integrate only labels
+        void IntegrateOnlyLabel(const geometry::Image &depthimg,
+                                const geometry::Image &segmap,
+                                const camera::PinholeCameraIntrinsic &intrinsic,
+                                const Eigen::Matrix4d &extrinsic,
+                const geometry::Image &depth_to_camera_distance_multiplier);
+In UniformTSDFVolume
+
+Voxel changed in UniformTSDFVolume.h
+class TSDFVoxel : public Voxel {
+...
+public:
+    float tsdf_ = 0;
+    float weight_ = 0;
+
+    std::vector<uint8_t> labels_; THIS IS NEW
+
+};
+
+Added   /// Return a float type image.
+    std::shared_ptr<Image> CreateFloatImageMultiChannel() const;
+in Image.h
+
+6.11 ScalableTSDFVolume.h line 126 made protected some variables to access from child class
+
+15.1.20 (Tristan)
+
+DeIntegrate und DeIntegrateWithDepthToCameraDistanceMultiplier zu UniformTSDFVolume hinzugefuegt. 
+
+Added a setWindow name function ot the visualizer and cuda visualizer

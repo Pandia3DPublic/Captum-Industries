@@ -1,0 +1,34 @@
+﻿{
+  "configurations": [
+    {
+      "buildCommandArgs": "-v",
+      "buildRoot": "${projectDir}\\CMakeBuilds\\build\\${name}",
+      "cmakeCommandArgs": "-Wno-dev",
+      "configurationType": "RelWithDebInfo",
+      "ctestCommandArgs": "",
+      "generator": "Ninja",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "installRoot": "${projectDir}\\CMakeBuilds\\install\\${name}",
+      "name": "x64-RelWithDebInfo",
+      "variables": [
+        {
+          "name": "WITH_SIMD",
+          "value": "False",
+          "type": "BOOL"
+        }
+      ]
+    },
+    {
+      "name": "x64-Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "buildRoot": "${projectDir}\\CMakeBuilds\\build\\${name}",
+      "installRoot": "${projectDir}\\CMakeBuilds\\install\\${name}",
+      "cmakeCommandArgs": "-Wno-dev",
+      "buildCommandArgs": "-v",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "variables": []
+    }
+  ]
+}
